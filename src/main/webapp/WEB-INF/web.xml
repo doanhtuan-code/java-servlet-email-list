@@ -5,26 +5,6 @@
                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd"
          version="6.1">
 
-    <servlet>
-        <servlet-name>EmailListServlet</servlet-name>
-        <servlet-class>murach.email.EmailListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EmailListServlet</servlet-name>
-        <url-pattern>/emailList</url-pattern>
-    </servlet-mapping>
-
-    <!--
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>murach.email.TestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
-    -->
-
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

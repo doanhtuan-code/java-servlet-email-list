@@ -1,12 +1,6 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Murach's Java Servlets and JSP</title>
-    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-</head>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ include file="/includes/header.html" %>
 
-<body>
     <h1>Thanks for joining our email list</h1>
 
     <p>Here is the information that you entered:</p>
@@ -27,5 +21,4 @@
         <input type="submit" value="Return">
     </form>
 
-</body>
-</html>
+<%@ include file="/includes/footer.jsp" %>

@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Murach's Java Servlets and JSP</title>
-    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-</head>
-<body>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ include file="/includes/header.html" %>
+
     <h1>Join our email list</h1>
     <p>To join our email list, enter your name and email address below.</p>
     
-    <p style="color: red;"><i>${message}</i></p>
+    <c:if test="${not empty message}">
+        <p style="color: red;"><i>${message}</i></p>
+    </c:if>
 
-    <!-- 
     <form action="emailList" method="post"> 
-    -->
-    <form action="test" method="post">
         <input type="hidden" name="action" value="add">
 
         <label>Email:</label>
@@ -29,5 +23,5 @@
         <label>&nbsp;</label>
         <input type="submit" value="Join Now" id="submit">
     </form>
-</body>
-</html>
+
+<%@ include file="/includes/footer.jsp" %>

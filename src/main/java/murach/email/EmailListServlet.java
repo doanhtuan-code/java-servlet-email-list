@@ -3,10 +3,14 @@ package murach.email;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 import murach.business.User;
 import murach.data.UserDB;
 
+@WebServlet("/emailList")
 public class EmailListServlet extends HttpServlet {
 
     @Override
@@ -62,6 +66,10 @@ public class EmailListServlet extends HttpServlet {
             request.setAttribute("message", message);
         }
         
+        GregorianCalendar currentDate = new GregorianCalendar();
+        int currentYear = currentDate.get(Calendar.YEAR);
+        request.setAttribute("currentYear", currentYear);
+
         // Forward request và response tới trang chỉ định
         getServletContext()
             .getRequestDispatcher(url)
