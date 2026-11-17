@@ -8,17 +8,23 @@
 <body>
     <h1>Join our email list</h1>
     <p>To join our email list, enter your name and email address below.</p>
-    <form action="emailList" method="post">
+    
+    <p style="color: red;"><i>${message}</i></p>
+
+    <!-- 
+    <form action="emailList" method="post"> 
+    -->
+    <form action="test" method="post">
         <input type="hidden" name="action" value="add">
 
         <label>Email:</label>
-        <input type="email" name="email" required><br>
+        <input type="email" name="email" value="${user.email}"><br>
 
         <label>First Name:</label>
-        <input type="text" name="firstName" required><br>
+        <input type="text" name="firstName" value="${user.firstName}"><br>
 
         <label>Last Name:</label>
-        <input type="text" name="lastName" required><br>
+        <input type="text" name="lastName" value="${user.lastName}"><br>
 
         <label>&nbsp;</label>
         <input type="submit" value="Join Now" id="submit">

@@ -14,12 +14,23 @@
         <url-pattern>/emailList</url-pattern>
     </servlet-mapping>
 
+    <!--
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>murach.email.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    -->
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

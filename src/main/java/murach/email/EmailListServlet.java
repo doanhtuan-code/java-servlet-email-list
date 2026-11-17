@@ -5,7 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import murach.business.User;
-//import murach.data.UserDB;
+import murach.data.UserDB;
 
 public class EmailListServlet extends HttpServlet {
 
@@ -17,39 +17,58 @@ public class EmailListServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String url = "/index.html";
+        String url = "/index.jsp";
 
-        // get current action
+        // Lấy action hiện tại
         String action = request.getParameter("action");
         if (action == null) {
-            action = "join";  // default action
+            action = "join";  // action mặc định
         }
 
-        // perform action and set URL to appropriate page
+        // In thông báo debug ra Tomcat console
+        System.out.println("EmailListServlet -- action=" + action);
+
+        // Ghi thông báo debug vào Tomcat log file
+        log("action=" + action);
+
+        // Xử lý theo từng action
         if (action.equals("join")) {
-            url = "/index.html";    // the "join" page
+            url = "/index.jsp";    // trang form đăng ký
         }
         else if (action.equals("add")) {                
-            // get parameters from the request
+            // Lấy tham số từ request
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
 
-            // store data in User object and save User object in db
+            // Tạo đối tượng User từ dữ liệu nhập
             User user = new User(firstName, lastName, email);
-            //UserDB.insert(user);
+
+            // Validate dữ liệu người dùng nhập
+            String message;
+            if (firstName == null || lastName == null || email == null ||
+                firstName.trim().isEmpty() || lastName.trim().isEmpty() || email.trim().isEmpty()) {
+                
+                message = "Please fill out all three text boxes.";
+                url = "/index.jsp";
+            } 
+            else {
+                message = "";
+                url = "/thanks.jsp";
+                UserDB.insert(user);
+            }
             
-            // set User object in request object and set URL
             request.setAttribute("user", user);
-            url = "/thanks.jsp";   // the "thanks" page
+            request.setAttribute("message", message);
         }
         
-        // forward request and response objects to specified URL
+        // Forward request và response tới trang chỉ định
         getServletContext()
             .getRequestDispatcher(url)
             .forward(request, response);
     }
 
+    // Thêm doGet chuyển tiếp sang doPost
     @Override
     protected void doGet(HttpServletRequest request, 
                          HttpServletResponse response) 
